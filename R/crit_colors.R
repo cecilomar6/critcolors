@@ -94,7 +94,7 @@ critcolors <- function(n, alpha = 1, begin = 0, end = 1, direction = 1) {
 #' @author Simon Garnier: \email{garnier@@njit.edu} / \href{https://twitter.com/sjmgarnier}{@@sjmgarnier}
 #'
 #'
-#' @importFrom critcolors
+#' @importFrom critcolors critcolors
 #'
 #' @export
 critcolors_pal <- function(alpha = 1, begin = 0, end = 1, direction = 1) {
@@ -139,7 +139,7 @@ critcolors_pal <- function(alpha = 1, begin = 0, end = 1, direction = 1) {
 #'
 #' @export
 scale_fill_critcolors <- function(..., alpha = 1, begin = 0, end = 1, direction = 1,
-                               discrete = FALSE) {
+                                  discrete = FALSE) {
   if (discrete) {
     discrete_scale("fill", "critcolors", critcolors_pal(alpha, begin, end, direction), ...)
   } else {
@@ -148,11 +148,11 @@ scale_fill_critcolors <- function(..., alpha = 1, begin = 0, end = 1, direction 
 
 }
 
-#' @rdname scale_critcolors
+#' @rdname scale_color_critcolors
 #' @importFrom ggplot2 scale_fill_gradientn scale_color_gradientn discrete_scale
 #' @export
 scale_color_critcolors <- function(..., alpha = 1, begin = 0, end = 1, direction = 1,
-                                discrete = FALSE) {
+                                   discrete = FALSE) {
   if (discrete) {
     discrete_scale("colour", "critcolors", critcolors_pal(alpha, begin, end, direction), ...)
   } else {
@@ -161,9 +161,7 @@ scale_color_critcolors <- function(..., alpha = 1, begin = 0, end = 1, direction
 }
 
 
-#' @rdname scale_critcolors
-#' @aliases scale_color_viridis
+#' @rdname scale_color_critcolors
+#' @aliases scale_color_critcolors
 #' @export
 scale_colour_critcolors <- scale_color_critcolors
-
-

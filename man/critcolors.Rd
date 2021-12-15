@@ -2,7 +2,7 @@
 % Please edit documentation in R/crit_colors.R
 \name{critcolors}
 \alias{critcolors}
-\title{CritLab Color Palettes}
+\title{CritLab Color Palette}
 \usage{
 critcolors(n, alpha = 1, begin = 0, end = 1, direction = 1)
 }
