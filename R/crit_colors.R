@@ -94,7 +94,6 @@ critcolors <- function(n, alpha = 1, begin = 0, end = 1, direction = 1) {
 #' @author Simon Garnier: \email{garnier@@njit.edu} / \href{https://twitter.com/sjmgarnier}{@@sjmgarnier}
 #'
 #'
-#' @importFrom critcolors critcolors
 #'
 #' @export
 critcolors_pal <- function(alpha = 1, begin = 0, end = 1, direction = 1) {
