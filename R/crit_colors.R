@@ -71,6 +71,39 @@ critcolors <- function(n, alpha = 1, begin = 0, end = 1, direction = 1) {
 }
 
 
+#' @title Critcolors Color Palettes
+#'
+#' @description A wrapper function around critcolors to
+#'  turn it into a palette function compatible with
+#'  \code{\link[ggplot2]{discrete_scale}}.
+#'
+#' @param alpha The alpha transparency, a number in [0,1], see argument alpha in
+#' \code{\link[grDevices]{hsv}}.
+#'
+#' @param begin The (corrected) hue in [0,1] at which the color map begins.
+#'
+#' @param end The (corrected) hue in [0,1] at which the color map ends.
+#'
+#' @param direction Sets the order of colors in the scale. If 1, the default,
+#'  colors are ordered from darkest to lightest. If -1, the order of colors is
+#'  reversed.
+#'
+#' @author Cecilia López-Martínez: \email{clm@@crit-lab.org} /
+#' Code adapted from the "viridis" package by
+#' @author Bob Rudis: \email{bob@@rud.is} / \href{https://twitter.com/hrbrmstr}{@@hrbrmstr}
+#' @author Simon Garnier: \email{garnier@@njit.edu} / \href{https://twitter.com/sjmgarnier}{@@sjmgarnier}
+#'
+#'
+#' @importFrom critcolors critcolors
+#'
+#' @export
+critcolors_pal <- function(alpha = 1, begin = 0, end = 1, direction = 1) {
+  function(n) {
+    critcolors(n, alpha, begin, end, direction)
+  }
+}
+
+
 #' @title CritColors Color Scales for ggplot2
 #'
 #' @description Scale functions (fill and colour/color) for
@@ -106,31 +139,29 @@ critcolors <- function(n, alpha = 1, begin = 0, end = 1, direction = 1) {
 #'
 #' @export
 scale_fill_critcolors <- function(..., alpha = 1, begin = 0, end = 1, direction = 1,
-                               discrete = FALSE) {
+                                  discrete = FALSE) {
   if (discrete) {
-    discrete_scale("fill", "critcolors", critcolors(alpha, begin, end, direction), ...)
+    discrete_scale("fill", "critcolors", critcolors_pal(alpha, begin, end, direction), ...)
   } else {
     scale_fill_gradientn(colours = critcolors(256, alpha, begin, end, direction), ...)
   }
 
 }
 
-#' @rdname scale_critcolors
+#' @rdname scale_color_critcolors
 #' @importFrom ggplot2 scale_fill_gradientn scale_color_gradientn discrete_scale
 #' @export
 scale_color_critcolors <- function(..., alpha = 1, begin = 0, end = 1, direction = 1,
-                                discrete = FALSE) {
+                                   discrete = FALSE) {
   if (discrete) {
-    discrete_scale("colour", "critcolors", critcolors(alpha, begin, end, direction), ...)
+    discrete_scale("colour", "critcolors", critcolors_pal(alpha, begin, end, direction), ...)
   } else {
     scale_color_gradientn(colours = critcolors(256, alpha, begin, end, direction), ...)
   }
 }
 
 
-#' @rdname scale_critcolors
-#' @aliases scale_color_viridis
+#' @rdname scale_color_critcolors
+#' @aliases scale_color_critcolors
 #' @export
 scale_colour_critcolors <- scale_color_critcolors
-
-
