@@ -20,6 +20,26 @@ library(critcolors)
 ## Examples
 
 ```{r}
+ggplot(iris, aes(x = Sepal.Length, y = Petal.Length, col = Petal.Length ))+
+  geom_point()+
+  scale_color_critcolors()
+```
+![](../master/figures/example2.png)
+
+```{r}
+volcano <- data.frame(
+       x = rep(seq_len(ncol(volcano)), each = nrow(volcano)),
+       y = rep(seq_len(nrow(volcano)), ncol(volcano)),
+       height = as.vector(volcano)
+   )
+ggplot(volcano, aes(x = x, y = y, fill = height)) + 
+       geom_raster() + 
+       scale_fill_critcolors()
+```
+![](../master/figures/example3.png)
+
+
+```{r}
 ggplot(mpg, aes(x=class, y=hwy))+ 
   geom_boxplot(outlier.colour = NA, position = "dodge", alpha = 0.3) +
   geom_jitter(aes(color = class), width = 0.3) +
@@ -28,14 +48,6 @@ ggplot(mpg, aes(x=class, y=hwy))+
 ```
 
 ![](../master/figures/example1.png)
-
-
-```{r}
-ggplot(iris, aes(x = Sepal.Length, y = Petal.Length, col = Petal.Length ))+
-  geom_point()+
-  scale_color_critcolors()
-```
-![](../master/figures/example2.png)
 ---
 
 ## References
